@@ -191,7 +191,7 @@ export function getLocalBusinessSchema() {
     telephone: COMPANY.phoneE164,
     email: COMPANY.email,
     taxID: COMPANY.cnpj,
-    foundingDate: String(COMPANY.foundingYear),
+    foundingDate: "2016-01-07",
     founder: {
       "@type": "Person",
       name: COMPANY.founder,
