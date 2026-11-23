@@ -34,8 +34,7 @@ export const COMPANY = {
     "Salto de Pirapora - SP",
     "Região Metropolitana de Sorocaba",
   ],
-  // Preencha com o link direto de avaliação (g.page/r/.../review) do Perfil da Empresa no Google
-  googleReviewUrl: "",
+  googleReviewUrl: "https://g.page/r/CQDLDMddXmddEBI/review",
   googleMapsSearchUrl:
     "https://www.google.com/maps/search/?api=1&query=TopVan+Piedade+SP",
 } as const;
@@ -153,7 +152,7 @@ export const HOME_FAQS: FAQItem[] = [
   {
     question: "Quais os diferenciais da van da Topvan?",
     answer:
-      "Operamos com Mercedes-Benz Sprinter preta 100% executiva para 18 passageiros, equipada com bancos em couro reclináveis, ar-condicionado com dutos individuais, TV digital, sistema de som integrado e conectividade Alexa.",
+      "Operamos com Mercedes-Benz Sprinter preta 100% executiva para 18 passageiros, equipada com bancos em couro reclináveis, ar-condicionado com dutos individuais, porta automática, tomadas para carregar celular, cortinas, iluminação interna, TV digital, som integrado e conectividade Alexa.",
   },
   {
     question: "Quais são as formas de pagamento?",

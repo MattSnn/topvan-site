@@ -4,22 +4,22 @@ import { COMPANY } from "@/lib/site";
 const Testimonials = () => {
   const testimonials = [
     {
-      name: "Roberto Silva",
-      role: "Diretor Comercial",
+      name: "Karen de Oliveira",
+      role: "Avaliação no Google",
       content:
-        "Serviço impecável. A van estava extremamente limpa e o motorista foi muito profissional durante todo o traslado da nossa equipe.",
+        "Juliano é um ótimo motorista! Oferece um conforto excepcional nas vans, elas são equipadas com bancos de couro reclináveis, porta automática, tomada para carregar o celular, iluminação interna e TV. Recomendo a todos.",
     },
     {
-      name: "Mariana Costa",
-      role: "Noiva",
+      name: "João",
+      role: "Avaliação no Google",
       content:
-        "Contratei para o transporte dos convidados do meu casamento e foi a melhor escolha. Todos elogiaram o conforto e a pontualidade.",
+        "Experiência excelente! Van muito confortável, bem equipada, ar-condicionado, tomadas, assentos reclináveis e cortinas. Além do motorista muito gente boa e pontual!",
     },
     {
-      name: "Carlos Eduardo",
-      role: "Turista",
+      name: "Lais Vieira Machado",
+      role: "Avaliação no Google",
       content:
-        "Fizemos uma viagem em família para o litoral e a Topvan superou nossas expectativas. Espaço de sobra para as malas e muito conforto.",
+        "Qualidade, segurança e conforto é com a Top Van! Recomendo demais!!",
     },
   ];
 

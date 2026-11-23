@@ -8,7 +8,7 @@ import { IMAGES, buildWhatsAppUrl, getServiceSchema } from "@/lib/site";
 const PAGE_PATH = "/frota-mercedes-sprinter-executiva";
 const PAGE_TITLE = "Frota Mercedes-Benz Sprinter Executiva 18 Lugares | Topvan Piedade";
 const PAGE_DESCRIPTION =
-  "Conheça a frota da Topvan em Piedade-SP: Mercedes-Benz Sprinter preta 100% executiva para 18 passageiros, bancos em couro reclináveis, ar-condicionado, TV digital e Alexa.";
+  "Conheça a frota da Topvan em Piedade-SP: Mercedes-Benz Sprinter preta 100% executiva para 18 passageiros, bancos em couro reclináveis, cortinas, porta automática, tomadas para celular, iluminação interna, ar-condicionado, TV digital e Alexa.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -32,19 +32,24 @@ export const metadata: Metadata = {
 export default function FrotaPage() {
   const specs = [
     {
-      title: "Capacidade para 18 Passageiros",
+      title: "18 Lugares em Couro e Cortinas",
       description:
-        "Bancos individuais em couro com encosto reclinável para máximo conforto em viagens diárias ou longas.",
+        "Bancos individuais em couro com encosto reclinável e cortinas para mais privacidade e descanso.",
     },
     {
-      title: "Climatização Integral",
+      title: "Climatização & Iluminação Interna",
       description:
-        "Sistema de ar-condicionado completo com dutos distribuídos para todas as fileiras da van.",
+        "Sistema de ar-condicionado completo com dutos individuais e iluminação interna aconchegante.",
     },
     {
-      title: "TV Digital e Entretenimento",
+      title: "Tomadas & Porta Automática",
       description:
-        "Tela a bordo e sistema de som de alta qualidade para tornar qualquer trajeto mais agradável.",
+        "Tomadas para carregar seu celular durante o trajeto e embarque prático com porta automática.",
+    },
+    {
+      title: "TV Digital e Sistema de Som",
+      description:
+        "Tela a bordo e som de alta qualidade para tornar viagens diárias e excursões mais agradáveis.",
     },
     {
       title: "Conectividade Alexa",
@@ -52,14 +57,9 @@ export default function FrotaPage() {
         "Escolha suas músicas e interaja durante passeios, excursões ou viagens universitárias.",
     },
     {
-      title: "Frota Própria e Revisada",
+      title: "Frota Própria, Revisada e Bagageiro",
       description:
-        "Manutenção preventiva em dia, higienização constante e visual discreto na cor preta.",
-    },
-    {
-      title: "Espaço para Bagagens",
-      description:
-        "Acomodação organizada para mochilas universitárias, malas de viagens e equipamentos de grupo.",
+        "Manutenção preventiva em dia, higienização constante e espaço organizado para mochilas e malas.",
     },
   ];
 

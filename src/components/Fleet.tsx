@@ -14,19 +14,22 @@ const Fleet = () => {
     {
       icon: IconSeat,
       title: "18 Lugares em Couro",
-      description: "Bancos executivos reclináveis para máximo descanso.",
+      description:
+        "Bancos executivos reclináveis e cortinas para máximo descanso.",
       featured: false,
     },
     {
       icon: IconSnowflake,
-      title: "Climatização Total",
-      description: "Ar-condicionado com dutos para todos os passageiros.",
+      title: "Climatização & Porta Automática",
+      description:
+        "Ar-condicionado completo, porta automática e iluminação interna.",
       featured: false,
     },
     {
       icon: IconTv,
-      title: "Tecnologia a Bordo",
-      description: "TV Digital e sistema de som integrado.",
+      title: "TV, Som & Tomadas",
+      description:
+        "TV Digital, som integrado e tomadas para carregar seu celular.",
       featured: false,
     },
     {
