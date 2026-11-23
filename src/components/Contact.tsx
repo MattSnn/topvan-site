@@ -1,15 +1,47 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import {
+  IconMail,
+  IconMapPin,
+  IconPhone,
+  IconWhatsApp,
+} from "@/components/Icons";
 import { COMPANY, buildWhatsAppUrl } from "@/lib/site";
 
+const SERVICE_OPTIONS = [
+  {
+    id: "Transporte Universitário",
+    placeholder: "Ex: UNISO, FACENS, UNIP, Anhanguera...",
+  },
+  {
+    id: "Transporte Escolar",
+    placeholder: "Ex: Colégio Ser, Objetivo, Anglo, ETEC...",
+  },
+  {
+    id: "Turismo / Viagem",
+    placeholder: "Ex: Aparecida do Norte, Litoral, Parque...",
+  },
+  {
+    id: "Aeroporto / Evento",
+    placeholder: "Ex: Aeroporto GRU, Viracopos, Casamento...",
+  },
+] as const;
+
 const Contact = () => {
+  const [selectedService, setSelectedService] = useState<string>(
+    SERVICE_OPTIONS[0].id
+  );
   const [formData, setFormData] = useState({
     name: "",
     date: "",
     route: "",
     message: "",
   });
+
+  const activeOption =
+    SERVICE_OPTIONS.find((opt) => opt.id === selectedService) ??
+    SERVICE_OPTIONS[0];
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -18,7 +50,7 @@ const Contact = () => {
       ? formData.date.split("-").reverse().join("/")
       : "A combinar";
 
-    let text = `Olá! Gostaria de um orçamento da Topvan.\n\n*Nome:* ${formData.name}\n*Data:* ${formattedDate}\n*Trajeto / Destino:* ${formData.route}`;
+    let text = `Olá! Gostaria de um orçamento da Topvan.\n\n*Serviço:* ${selectedService}\n*Nome:* ${formData.name}\n*Data:* ${formattedDate}\n*Trajeto / Destino:* ${formData.route}`;
 
     if (formData.message.trim()) {
       text += `\n*Mensagem:* ${formData.message.trim()}`;
@@ -37,85 +69,73 @@ const Contact = () => {
   };
 
   return (
-    <section id="contato" className="py-24 bg-zinc-950">
+    <section
+      id="contato"
+      className="py-14 sm:py-20 lg:py-24 bg-[#0b0b0e] border-t border-white/10"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           {/* Contact Info */}
           <div>
-            <p className="text-gold-400 font-bold uppercase tracking-widest mb-4">
+            <p className="text-gold-400 font-bold uppercase tracking-widest text-xs sm:text-sm mb-3">
               Contato
             </p>
-            <h2 className="text-4xl font-bold text-white mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Solicite seu Orçamento Grátis
             </h2>
-            <p className="text-gray-400 text-lg mb-10 leading-relaxed">
+            <p className="text-gray-400 text-base sm:text-lg mb-8 leading-relaxed">
               Atendemos estudantes, famílias e empresas em Piedade-SP, Sorocaba
-              e toda a região. Preencha o formulário ou fale diretamente pelo
-              WhatsApp.
+              e toda a região. Escolha o serviço ao lado ou fale diretamente nos
+              nossos canais.
             </p>
 
-            <div className="space-y-6">
-              <div className="flex items-center gap-6">
-                <div className="w-12 h-12 bg-gold-400 rounded-full flex items-center justify-center text-black flex-shrink-0">
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path d="M20 10.999h2c0-5.523-4.477-10-10-10v2c4.418 0 8 3.582 8 8zm-4 0h2c0-3.314-2.686-6-6-6v2c2.209 0 4 1.791 4 4zm-7.467 6L5.333 13.8c-1.108-1.108-1.108-2.892 0-4s2.892-1.108 4 0l1.267 1.267a1.1 1.1 0 0 1 0 1.533L9.467 14c-.333.333-.333.867 0 1.2l1.333 1.333c.333.333.867.333 1.2 0l1.4-1.4a1.1 1.1 0 0 1 1.533 0l1.267 1.267c1.108 1.108 1.108 2.892 0 4s-2.892 1.108-4 0l-1.267-1.267a1.1 1.1 0 0 1 0-1.533z" />
-                  </svg>
+            <div className="space-y-3.5">
+              <a
+                href={`tel:${COMPANY.phoneE164}`}
+                className="flex items-center gap-4 p-4 rounded-2xl bg-[#121216] border border-white/10 hover:border-gold-400/40 transition-colors"
+              >
+                <div className="w-11 h-11 bg-gold-400 rounded-xl flex items-center justify-center text-black flex-shrink-0">
+                  <IconPhone className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold">Telefone / WhatsApp</h3>
-                  <a
-                    href={`tel:${COMPANY.phoneE164}`}
-                    className="text-gray-300 hover:text-gold-400 transition-colors"
-                  >
+                  <h3 className="text-white font-bold text-sm sm:text-base">
+                    Telefone / WhatsApp
+                  </h3>
+                  <p className="text-gold-300 font-semibold text-sm sm:text-base">
                     {COMPANY.phoneDisplay}
-                  </a>
+                  </p>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-center gap-6">
-                <div className="w-12 h-12 bg-gold-400 rounded-full flex items-center justify-center text-black flex-shrink-0">
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                  </svg>
+              <a
+                href={`mailto:${COMPANY.email}`}
+                className="flex items-center gap-4 p-4 rounded-2xl bg-[#121216] border border-white/10 hover:border-gold-400/40 transition-colors"
+              >
+                <div className="w-11 h-11 bg-gold-400 rounded-xl flex items-center justify-center text-black flex-shrink-0">
+                  <IconMail className="w-5 h-5" />
                 </div>
-                <div>
-                  <h3 className="text-white font-bold">E-mail</h3>
-                  <a
-                    href={`mailto:${COMPANY.email}`}
-                    className="text-gray-300 hover:text-gold-400 transition-colors"
-                  >
+                <div className="min-w-0">
+                  <h3 className="text-white font-bold text-sm sm:text-base">
+                    E-mail Comercial
+                  </h3>
+                  <p className="text-gray-300 text-sm sm:text-base truncate">
                     {COMPANY.email}
-                  </a>
+                  </p>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-center gap-6">
-                <div className="w-12 h-12 bg-gold-400 rounded-full flex items-center justify-center text-black flex-shrink-0">
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                  </svg>
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#121216] border border-white/10">
+                <div className="w-11 h-11 bg-gold-400 rounded-xl flex items-center justify-center text-black flex-shrink-0">
+                  <IconMapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold">Localização e Cobertura</h3>
-                  <p className="text-gray-300">
+                  <h3 className="text-white font-bold text-sm sm:text-base">
+                    Localização e Cobertura
+                  </h3>
+                  <p className="text-gray-300 text-sm sm:text-base">
                     {COMPANY.streetAddress} — {COMPANY.city}/{COMPANY.state}
                   </p>
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-gray-500 text-xs sm:text-sm mt-0.5">
                     Atendemos Piedade, Sorocaba, Votorantim e toda a região
                   </p>
                 </div>
@@ -124,12 +144,37 @@ const Contact = () => {
           </div>
 
           {/* Form */}
-          <div className="bg-zinc-900 p-8 rounded-3xl border border-zinc-800">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="bg-[#121216] p-5 sm:p-8 rounded-3xl border border-white/10 shadow-2xl">
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-wider text-gold-400 mb-3">
+                1. Tipo de atendimento
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {SERVICE_OPTIONS.map((option) => {
+                  const isActive = option.id === selectedService;
+                  return (
+                    <button
+                      key={option.id}
+                      type="button"
+                      onClick={() => setSelectedService(option.id)}
+                      className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                        isActive
+                          ? "bg-gold-400 text-black shadow-[0_0_16px_rgba(212,175,55,0.25)]"
+                          : "bg-black/60 text-gray-300 border border-white/10 hover:border-gold-400/40"
+                      }`}
+                    >
+                      {option.id}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label
                   htmlFor="contact-name"
-                  className="block text-sm font-bold text-gray-300 mb-2"
+                  className="block text-sm font-bold text-gray-300 mb-1.5"
                 >
                   Nome
                 </label>
@@ -139,8 +184,8 @@ const Contact = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-gold-400 outline-none transition-all"
-                  placeholder="Seu nome"
+                  className="w-full bg-black border border-white/15 rounded-xl px-4 py-3 text-base text-white focus:border-gold-400 outline-none transition-all"
+                  placeholder="Seu nome completo"
                   required
                 />
               </div>
@@ -148,7 +193,7 @@ const Contact = () => {
               <div>
                 <label
                   htmlFor="contact-date"
-                  className="block text-sm font-bold text-gray-300 mb-2"
+                  className="block text-sm font-bold text-gray-300 mb-1.5"
                 >
                   Data da Viagem / Início das Aulas
                 </label>
@@ -163,7 +208,7 @@ const Contact = () => {
                       e.currentTarget.showPicker();
                     }
                   }}
-                  className={`w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 focus:border-gold-400 outline-none transition-all cursor-pointer ${
+                  className={`w-full bg-black border border-white/15 rounded-xl px-4 py-3 text-base focus:border-gold-400 outline-none transition-all cursor-pointer ${
                     formData.date ? "text-white" : "text-gray-400"
                   }`}
                   required
@@ -173,7 +218,7 @@ const Contact = () => {
               <div>
                 <label
                   htmlFor="contact-route"
-                  className="block text-sm font-bold text-gray-300 mb-2"
+                  className="block text-sm font-bold text-gray-300 mb-1.5"
                 >
                   Destino (ou Escola/Faculdade)
                 </label>
@@ -183,8 +228,8 @@ const Contact = () => {
                   name="route"
                   value={formData.route}
                   onChange={handleChange}
-                  className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-gold-400 outline-none transition-all"
-                  placeholder="Ex: UNISO, Colégio Ser, Aparecida, Aeroporto GRU..."
+                  className="w-full bg-black border border-white/15 rounded-xl px-4 py-3 text-base text-white focus:border-gold-400 outline-none transition-all"
+                  placeholder={activeOption.placeholder}
                   required
                 />
               </div>
@@ -192,34 +237,27 @@ const Contact = () => {
               <div>
                 <label
                   htmlFor="contact-message"
-                  className="block text-sm font-bold text-gray-300 mb-2"
+                  className="block text-sm font-bold text-gray-300 mb-1.5"
                 >
                   Mensagem (Opcional)
                 </label>
                 <textarea
                   id="contact-message"
                   name="message"
-                  rows={4}
+                  rows={3}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-gold-400 outline-none transition-all"
+                  className="w-full bg-black border border-white/15 rounded-xl px-4 py-3 text-base text-white focus:border-gold-400 outline-none transition-all"
                   placeholder="Informe bairro em Piedade, quantidade de passageiros ou período (manhã/noite)..."
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-4 bg-gold-400 hover:bg-gold-500 text-black font-bold rounded-xl text-lg transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full min-h-[52px] py-3.5 bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 hover:brightness-110 text-black font-bold rounded-xl text-base sm:text-lg transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_24px_rgba(212,175,55,0.2)]"
               >
-                <svg
-                  className="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-                </svg>
-                Enviar no WhatsApp
+                <IconWhatsApp className="w-5 h-5" />
+                <span>Enviar Orçamento no WhatsApp</span>
               </button>
             </form>
           </div>

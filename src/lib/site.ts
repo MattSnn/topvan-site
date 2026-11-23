@@ -1,5 +1,12 @@
 export const SITE_URL = "https://www.topvan.tur.br";
 
+export const CREDITS = {
+  agencyName: "Strype",
+  agencyUrl: "https://strype.com.br",
+  adminName: "Mateus Sonnenberg",
+  adminEmail: "mateus.sonnenberg.amaral@gmail.com",
+} as const;
+
 export const COMPANY = {
   name: "Topvan Transporte Executivo",
   shortName: "Topvan",

@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Plus_Jakarta_Sans } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import MobileActionBar from "@/components/MobileActionBar";
 import JsonLd from "@/components/JsonLd";
 import {
   COMPANY,
+  CREDITS,
   SITE_URL,
   getLocalBusinessSchema,
   getWebSiteSchema,
@@ -14,11 +16,22 @@ import "./globals.css";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
+  weight: ["600", "700", "800"],
   variable: "--font-montserrat",
+  display: "swap",
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-jakarta",
+  display: "swap",
 });
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#070708",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export const metadata: Metadata = {
@@ -42,8 +55,8 @@ export const metadata: Metadata = {
     "topvan piedade",
     "topvan transporte executivo",
   ],
-  authors: [{ name: COMPANY.founder, url: SITE_URL }],
-  creator: COMPANY.name,
+  authors: [{ name: CREDITS.adminName, url: CREDITS.agencyUrl }],
+  creator: `${CREDITS.agencyName} (${CREDITS.agencyUrl})`,
   publisher: COMPANY.legalName,
   alternates: {
     canonical: "/",
@@ -84,16 +97,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
-      <body
-        className={`${montserrat.variable} antialiased bg-black text-white`}
-      >
+    <html
+      lang="pt-BR"
+      className={`${montserrat.variable} ${plusJakarta.variable}`}
+    >
+      <body className="antialiased bg-[#070708] text-white font-sans selection:bg-gold-400 selection:text-black">
         <JsonLd data={getLocalBusinessSchema()} />
         <JsonLd data={getWebSiteSchema()} />
         <Navbar />
         {children}
         <Footer />
         <FloatingWhatsApp />
+        <MobileActionBar />
       </body>
     </html>
   );

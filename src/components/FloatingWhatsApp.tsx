@@ -1,8 +1,9 @@
+import { IconWhatsApp } from "@/components/Icons";
 import { buildWhatsAppUrl } from "@/lib/site";
 
 const FloatingWhatsApp = () => {
   const whatsappUrl = buildWhatsAppUrl(
-    "Olá! Vim pelo site da Topvan e gostaria de informações."
+    "Olá! Vim pelo site da Topvan e gostaria de um orçamento."
   );
 
   return (
@@ -10,22 +11,11 @@ const FloatingWhatsApp = () => {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all z-50 hover:scale-110 duration-300"
-      aria-label="Falar com a Topvan no WhatsApp"
+      className="hidden md:flex fixed bottom-6 right-6 z-50 items-center gap-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-bold pl-4 pr-5 py-3.5 rounded-full shadow-[0_12px_32px_rgba(16,185,129,0.35)] transition-all hover:scale-105 duration-300"
+      aria-label="Orçamento via WhatsApp com a Topvan"
     >
-      <svg
-        viewBox="0 0 24 24"
-        width="32"
-        height="32"
-        stroke="currentColor"
-        strokeWidth="2"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-      </svg>
+      <IconWhatsApp className="w-5 h-5" />
+      <span className="text-sm tracking-tight">Orçamento WhatsApp</span>
     </a>
   );
 };
